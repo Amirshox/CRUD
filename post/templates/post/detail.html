@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <div class="card-deck">
+            <div class="card">
+                <img src="{{ post.image.url }}" class="card-img-top">
+                <div class="card-body">
+                    <h4 class="card-title">{{ post.title }}</h4>
+                    <p class="card-text">{{ post.content }}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">{{ post.created|date:"d M Y" }}</small>
+                    <small class="text-muted float-right">{{ post.author|capfirst }}</small>
+                </div>
+            </div>
+        </div>
+        <div class="float-right my-2">
+            <a href="{% url 'delete_post' pk=post.pk %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'edit_post' pk=post.pk %}" class="btn btn-warning">Update</a>
+        </div>
+    </div>
+{% endblock %}
